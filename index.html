@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahorcado</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico" data-href-light="images/favicon.ico"
+        data-href-dark="images/favicon-dark.ico">
+    <script>(function () { if ("not-all" !== window.matchMedia("(prefers-color-scheme").media) { var a = window.matchMedia("(prefers-color-scheme: dark)"), d = document.querySelectorAll('link[rel="icon"]'), c = function () { var e = a.matches ? "hrefDark" : "hrefLight"; Array.prototype.slice.call(d).forEach(function (b) { b.href = b.dataset[e] }) }; a.addEventListener("change", c); c() } })();</script>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&family=Rubik:wght@400;900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body id="body">
+    <header id="header">
+        <section class="tablero">
+            <!-- se repite en el main (arreglarlo) -->
+            <a class="logo" href="https://www.aluracursos.com/" target="_blank" title="alura LATAM"><img
+                    src="images/logo.svg" alt="logo de alura"></a>
+        </section>
+
+        <section id="btns-inicio-0">
+            <div class="btns-inicio">
+                <input id="nuevo-juego" class="btn-juego" type="button" value="Nuevo Juego">
+                <input id="btn-agregar-palabra" class="btn-desistir" type="button" value="Agregar palabras">
+                <input id="pantalla-completa" class="pantalla-completa" type="button" value="Pantalla completa">
+            </div>
+        </section>
+
+        <section id="agregar-palabra">
+            <textarea id="textarea" maxlength="16"></textarea>
+            <div class="requisitosPalabra">
+                <p>Palabra plana, máximo 16 letras.</p>
+            </div>
+            <div class="btns">
+                <input id="guardar" class="btn-desistir" type="button" value="Guardar">
+                <input id="iniciar-juego" class="btn-juego" type="button" value="Iniciar Juego">
+            </div>
+        </section>
+
+        <div class="alerta"></div>
+
+    </header>
+
+    <main id="main">
+
+        <section class="tablero">
+            <a class="logo" href="https://www.aluracursos.com/" target="_blank" title="alura LATAM"><img
+                    src="images/logo.svg" alt="logo de alura"></a>
+            <div>
+                <p>Ronda: <span id="ronda">0</span> de <span id="rondas">--</span></p>
+
+                <p>Puntaje: <span id="puntuacion">--</span></p>
+
+                <p title="Tiempo"><span id="tiempo">--</span> s</p>
+            </div>
+
+        </section>
+
+        <section class="groupdibujo">
+            <svg id="dibujo" class="dibujo" viewBox="0 0 203 694" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M119.992 169c-2.334-2.167-5.9-11.2-1.5-30V2h-10.5v133.5c-2 1-6.3 4.8-7.5 12-1.2 7.2 3.5 8.333 6 8-4 14.167-6 43.1 18 45.5 3.333 4.667 13 12 25 4 15-10 33.5-22.5 37-26.5 2.8-3.2 2.833-5 2.5-5.5 3.333.5 10.3-1 11.5-11 1.2-10-1.5-20.5-3-24.5-2.167-5.5-9-17.8-19-23-12.5-6.5-29-6-42.5 3.5-10.8 7.6-15.5 14.833-16.5 17.5v3.5c-1.5 4.667-3.8 16.3-1 25.5-.5-6.833.5-20.4 8.5-20 8 .4 9.667 8.5 9.5 12.5-3.833 2.833-10.3 9.3-5.5 12.5 3.667.333 11.1.9 11.5.5.5-.5-1.5-13.5 10.5-14s1.5 11.5 35.5 17c.5.333.7 1.9-2.5 5.5-4 4.5-33.5 24.338-37 26.5-1.06.655-10.5 6.5-18 1-4.091-3-6.004-3.518-12-15-5.5-14-9-17.5-2.5-28-5.5 10.5-2.993 13.414 1 25.5 3 7 10 15.711 13 18.5 1.5.5 0 5.5 0 5.5-3 5-8.612 6.303-11.5 7-.833 3.667-4 12.2-10 17 2.5 26.833 8.2 84.6 11 101 .333 2.167-1.1 9.6-9.5 22-1.5-1.667-7.2-8.1-18-20.5 2-5.333 6-21.7 6-44.5 0-28.5 9.5-59 9.5-58-1.833-2-5.9-8.4-7.5-18-7.333-1.167-21.7-7.7-20.5-24.5 1-3 5.7-10.7 16.5-17.5.833-.333 3.3-1 6.5-1v.5c-.842-.167-3.22-.2-6 1-.5 4.5.9 16 10.5 26-1.333 1.5-4.6 6.6-7 15 1-3.167 3.6-10.2 6-13 1.333-.333 5.1-.4 9.5 2 1 2.5 3 8.4 3 12 0-1.167-.5-5.3-2.5-12.5-.167-.5-.5-1.6-.5-2 0-.5 7.5 0 8.5-2.5 1.167 1.167 4.1 3.8 6.5 5 .333.167.8 1.5 0 5.5 5.5 3.667 17.1 15.4 19.5 33 3 22 8 41.5 6.5 124.5l-.5 43.5c.167 2.833-2.5 8.6-14.5 9 .333 7.333 1 23.9 1 31.5 2.167-.667 6.7-3.7 7.5-10.5l-.5-13.5h-7c3 0 9.1-.5 9.5-2.5.4-2 .167-5.5 0-7-1.833.667-6.5 1.9-10.5 1.5-.167-3.167-1.8-11.8-7-21 1-.833 2.5-4.4.5-12 3-2.167 9.2-8.8 10-18 1-11.5 4.5-92.5-3.5-123.5 3 20.333 7.7 73.5 2.5 123.5-.167 1.96-.8 6.503-2 9-1.5 3.121-4 7-7.5 9s-2 2.5-29 4c1.333-2.167 3.7-12.2 2.5-35 .5 10.667.5 32.6-3.5 35-18.333.667-55.6 1-58-3 .333-10 2-36.4 6-62 .667-2 1.8-8.6 1-19-1-13-.5-15.5 1-22-1 3.667-2.7 13.2-1.5 22 1.5 11 0 16-1 19s-5.5 48-6 62-.5 10.5 0 26.5c.4 12.8-9.167 17.333-14 18-3.333.333-11.6-.7-18-7.5-1.167.833-3.3 3.9-2.5 9.5-1.667.167-5 3.7-5 16.5.167-2.333-.2-7.1-3-7.5-3.5-.5-2 9.5 1.5 14.5s10 8 16.5 6.5 11.5-9 11-25.5c1.667-1.333 5-4.8 5-8-.167 1.5-1.5 5.2-5.5 8-5 3.5-14.5 0-20-4-.667-1-1.3-4.5 1.5-10.5-1.166-1.667-3.1-10.7-1.5-33.5 2-28.5 2.5-33.5 3.5-79-.167-6.667.6-23.1 5-35.5.167 3.5.9 13 2.5 23-2.5-21-5.4-65.6 3-76 4.834 1.167 15.7 8.8 20.5 30-1.166-7.167-6.7-23.4-19.5-31 5.5-5.833 23.5-19.9 51.5-29.5-11.5 4-38 15.6-52 30-2.298 2.333-6.616 13.4-5.5 39 0 2.667-.1 9.2-.5 14-1.833 6-5.3 21.6-4.5 36-1 22-3.1 68.6-3.5 79-1.167 8.167-2.6 26.4 1 34 3.834 3.833 13.9 10.4 23.5 6 .5.667.2 3.3-5 8.5.5 1.167 1.1 6.1-.5 16.5-2 13 4 42.5 1.5 56s0 25-7.5 54c-.833 3-2.8 12.7-4 27.5-1.166 6.667-2.8 21.4 0 27-3.166 14.667-1.3 48.9 31.5 68.5 4 1.167 11.9.9 11.5-9.5-.4-10.4-7.833-29.667-11.5-38-5 1.667-18.2-.1-31-20.5 4.834 8 17.8 23.2 31 20 2.334-2.5 7.9-14.6 11.5-43 .834-4.667 4.4-18.3 12-35.5 1.5-3.167 4.9-15.3 6.5-38.5 1.167-1.833 4.1-17.6 6.5-66 .667-2.833 3.1-9.3 7.5-12.5.834-.5 2.8-3 4-9-.5 2.5-2 8-4 10-2.5 2.5-6.68 6.5-7.5 16.5-.82 10 0 11 1.5 22s8 51 1.5 98.5-5.5 39.5-2.5 49c-2.666 17.833-5.5 53.8 4.5 55 12.5 1.5 23.5-21.5 25-50-6.5 8-21.3 18.4-28.5-4 2.667 9.333 12.2 23 29 3 2.667-3.333 8.2-13.5 9-27.5 1-17.5 3.5-23 4.5-32.5s0-15.5 4.5-34 2-26.5 3-42 3-58.893 0-80.197c.167-2.934-1-11.203-7-20.803-7.333 2.167-33.3 5.8-78.5 3-2.5-.167-7.9-1-9.5-3" />
+            </svg>
+
+        </section>
+
+        <section class="form">
+            <div class="palabra">
+                <p id="palabra"></p>
+            </div>
+            <div class="alfabeto">
+                <button>A</button>
+                <button>B</button>
+                <button>C</button>
+                <button>D</button>
+                <button>E</button>
+                <button>F</button>
+                <button>G</button>
+                <button>H</button>
+                <button>I</button>
+                <button>J</button>
+                <button>K</button>
+                <button>L</button>
+                <button>M</button>
+                <button>N</button>
+                <button>Ñ</button>
+                <button>O</button>
+                <button>P</button>
+                <button>Q</button>
+                <button>R</button>
+                <button>S</button>
+                <button>T</button>
+                <button>U</button>
+                <button>V</button>
+                <button>W</button>
+                <button>X</button>
+                <button>Y</button>
+                <button>Z</button>
+            </div>
+
+            <div class="btns-juego">
+                <input id="btn-juego" class="btn-juego" type="button" value="Continuar">
+                <input id="desistir" class="btn-desistir" type="button" value="Salir">
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p id="copyright">Diseñado por David-Blanc</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.1/howler.min.js"
+        integrity="sha512-L6Z/YtIPQ7eU3BProP34WGU5yIRk7tNHk7vaC2dB1Vy1atz6wl9mCkTPPZ2Rn1qPr+vY2mZ9odZLdGYuaBk7dQ=="
+        crossorigin="anonymous"></script>
+    <script id="main" src="script.js"></script>
+</body>
+
+</html>

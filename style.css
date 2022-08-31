@@ -1,0 +1,450 @@
+body {
+    font-family: 'Rubik', sans-serif;
+    color: #0A3871;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-height: 100vh;
+    justify-content: flex-end;
+    background-image: linear-gradient(white, #E9ECF8);
+}
+
+.btns-inicio {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: center;
+    align-items: stretch;
+    height: 100vh;
+}
+
+.btns-inicio input {
+    border-radius: 22px;
+    padding: 20px 8%;
+    font-family: 'Rubik', sans-serif;
+    font-size: 16px;
+    margin-bottom: 2vh;
+}
+
+.btns-inicio input:hover {
+    scale: 1.05;
+    cursor: pointer;
+}
+
+.tablero {
+    display: inline-flex;
+    position: fixed;
+    top: 2vh;
+    left: 2vw;
+    width: 96vw;
+    justify-content: space-between;
+}
+
+.logo img {
+    margin-bottom: 2em;
+}
+
+.logo:hover {
+    cursor: pointer;
+}
+
+.tablero p {
+    font-size: 1.05em;
+    font-weight: bold;
+    color: #609ED4;
+    text-align: right;
+}
+
+#agregar-palabra {
+    display: none;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+
+    max-width: 300px;
+    margin: auto;
+}
+
+#agregar-palabra textarea {
+    margin-bottom: 5px;
+    resize: none;
+    text-align: center;
+    border-radius: 22px;
+    padding: 3vh 0;
+    font-size: 24px;
+    color: #0A3871;
+    border: 2px solid #0A3871;
+    height: 24px;
+    line-height: 24px;
+}
+
+#textarea:focus {
+    outline: none;
+    border: 2px solid rgb(240, 191, 76);
+}
+
+.requisitosPalabra {
+    margin-bottom: 4vh;
+}
+
+.btns {
+    display: flex;
+
+    flex-direction: column;
+    align-items: center;
+}
+
+.btns input {
+    border-radius: 22px;
+    padding: 20px 3vh;
+    width: 100%;
+    font-family: 'Rubik', sans-serif;
+    font-size: 16px;
+
+    margin-bottom: 2vh;
+    width: 70%;
+}
+
+.btns input:hover {
+    scale: 1.05;
+    cursor: pointer;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    display: none;
+    height: 100%;
+    justify-content: flex-end;
+}
+
+.groupdibujo {
+    position: absolute;
+    z-index: 1;
+    height: 100vh;
+    top: -5%;
+}
+
+.dibujo {
+    fill: none;
+    stroke: white;
+    stroke-width: 4.5px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    overflow: visible;
+    filter: drop-shadow(9px 0px 4px rgba(0, 0, 0, 0.3));
+    background-image: url(images/contorno.png);
+    background-size: cover;
+
+    height: 80%;
+
+}
+
+.dibujo path {
+    visibility: hidden;
+}
+
+.form {
+    margin: 0 1em;
+    z-index: 2;
+    max-width: 606px;
+}
+
+.form div {
+    padding-top: 1.5em;
+    text-align: center;
+}
+
+.palabra {
+    font-size: 33px;
+    min-height: 40px;
+}
+
+.palabra p {
+    background-color: rgba(255,255,255,0.6);
+    border-top-color: rgba(10, 56, 113,.75);
+    border-top-style: solid;
+    border-top-width: 2px;
+    border-right-color: rgba(10, 56, 113,.75);
+    border-right-style: solid;
+    border-right-width: 2px;
+    border-left-color: rgba(10, 56, 113,.75);
+    border-left-style: solid;
+    border-left-width: 2px;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    border-top-left-radius: 22px;
+    border-top-right-radius: 22px;
+    padding-top: 1vh;
+}
+
+.palabra span {
+    display: inline-block;
+    border-bottom: solid;
+    border-color: #0A3871;
+    width: 0.75em;
+    height: 1em;
+    padding-bottom: 0.1em;
+    margin: 0 0.2em;
+    vertical-align: bottom;
+}
+
+.alfabeto {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: stretch;
+    justify-content: center;
+
+    background-color: rgba(255,255,255,0.6);
+    border-bottom-right-radius: 22px;
+    border-bottom-left-radius: 22px;
+    border-right-color: rgba(10, 56, 113,.75);
+    border-right-style: solid;
+    border-right-width: 2px;
+    border-bottom-color: rrgba(10, 56, 113,.75);
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-left-color: rgba(10, 56, 113,.75);
+    border-left-style: solid;
+    border-left-width: 2px;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+
+    padding-bottom: 1vh;
+}
+
+.alfabeto button {
+    font-size: 33px;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 900;
+    border-style: none;
+    background: 100%;
+    color: #0A3871;
+    width: 40px;
+    height: 40px;
+    margin: 1.5px;
+}
+
+.alfabeto button:hover {
+    scale: 1.2;
+    cursor: pointer;
+}
+
+.btns-juego {
+    display: flex;
+
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+}
+
+.btns-juego input {
+    border-radius: 22px;
+    padding: 20px 3vh;
+    max-width: 47%;
+    font-family: 'Rubik', sans-serif;
+    font-size: 16px;
+
+    margin-bottom: 2vh;
+    width: 70%;
+}
+
+.btns-juego input:hover {
+    scale: 1.05;
+    cursor: pointer;
+}
+
+.btn-juego {
+    background: #0A3871;
+    color: white;
+    border: 2px solid #000000;
+}
+
+.btn-desistir {
+    background: #D8DFE8;
+    color: #0A3871;
+    border: 2px solid #0A3871;
+}
+
+.pantalla-completa {
+    background: white;
+    color: #0A3871;
+    border: 2px solid #0A3871;
+}
+
+footer {
+    font-size: 1.05em;
+    text-align: right;
+    padding-top: 3vh;
+    padding-bottom: 2vh;
+    color: #609ED4;
+
+    margin: auto;
+}
+
+
+/*PopUp*/
+.mensajePopUp {
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+}
+
+.divContentPopUp {
+    background-color: white;
+    width: 30%;
+    height: 30%;
+    min-width: 300px;
+    min-height: 250px;
+    padding: 0.5em;
+    border-radius: 22px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly
+}
+
+.textPopUp {
+    font-weight: 400;
+    font-size: 1.5em;
+    line-height: 1.7em;
+}
+
+.closeButtonPopUp {
+    cursor: pointer;
+    background-color: #0A3871;
+    color: white;
+    border: 2px solid #000000;
+    font-family: 'Rubik', sans-serif;
+    font-size: 16px;
+    border-radius: 22px;
+    padding: 2vh 5vh;
+}
+
+.closeButtonPopUp:hover {
+    scale: 1.05;
+}
+
+/*alerta*/
+.alerta {
+    top: 2vh;
+    position: fixed;
+    width: 100vw;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.green-box {
+    font-size: 16px;
+    border-radius: 22px;
+    padding: 2vh 5vh;
+    background-color: #008000;
+    color: white;
+    margin-bottom: 1vh;
+    opacity: 1;
+    transition: 0.5s ease all;
+}
+
+.red-box {
+    font-size: 16px;
+    border-radius: 22px;
+    padding: 2vh 5vh;
+    background-color: #FF0000;
+    color: white;
+    margin-bottom: 1vh;
+    opacity: 1;
+    transition: 0.5s ease all;
+}
+
+.active {
+    opacity: 0;
+}
+
+@media only screen and (orientation: landscape) {
+
+    #agregar-palabra {
+        max-width: 400px;
+    }
+
+    .btns {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .btns input {
+        max-width: 47%;
+    }
+
+    main{
+        flex-direction: row;
+        padding-left: 5%;
+        padding-right: 5%;
+        justify-content: center
+    }
+
+    .groupdibujo {
+        position: initial;
+        padding-right: 2.5%;
+    }
+
+    .dibujo {
+        height: 100%;
+    }
+
+    .palabra p{
+        background: none;
+        border: none;
+    }
+
+    .alfabeto {
+        background: none;
+        border: none;
+    }
+
+    footer {
+        padding-right: 2vw;
+        margin: initial;
+    }
+
+}
+
+@media (max-width: 700px) and (orientation: landscape) {
+    main{
+        padding-left: 10%;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+
+    .groupdibujo{
+        padding-right: 5%;
+    }
+
+    .palabra {
+        font-size: 42px;
+        min-height: 51px;
+    }
+
+    .alfabeto button {
+        font-size: 42px;
+        width: 51px;
+        height: 51px;
+        margin: 1.5px;
+    }
+
+}
