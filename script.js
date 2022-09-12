@@ -21,7 +21,7 @@ const textarea = document.querySelector("#textarea");
 
 //permite la carga (en agregar palabra) sólo de letras
 let tempInput = ""
-let expresion = /[A-Z,Ñ]/i;
+let expresion = /[A-ZÑ]/i;
 
 textarea.addEventListener("input", (e) => {
     if (expresion.test(e.data) && e.data != null || e.inputType == 'deleteContentBackward') {
